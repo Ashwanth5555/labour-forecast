@@ -1,0 +1,10 @@
+# The signing key. Anyone holding this can authenticate as your Epic client.
+epic_private_key.pem
+epic_public_cert.pem
+
+# Holds the client id once filled in.
+.env
+
+# Output, which may contain patient data.
+*.csv
+*.json

@@ -1,0 +1,46 @@
+=== job.department_id vs employee.department_id consistency ===
+  mismatches: 245 / 500
+
+=== holidays within operational window (2026-06-02..2026-07-31) ===
+  holiday_date holiday_name  demand_multiplier
+7   2026-07-04      Holiday               1.35
+
+=== timecards: overtime distribution ===
+  pct rows with overtime_hours > 0: 52.1%
+  overtime_hours describe:
+count    19490.000000
+mean         0.306791
+std          0.432273
+min          0.000000
+25%          0.000000
+50%          0.040000
+75%          0.520000
+max          3.020000
+  total_worked_hours describe:
+count    19490.000000
+mean         8.002527
+std          1.559700
+min          0.000000
+25%          7.950000
+50%          8.040000
+75%          8.520000
+max         11.020000
+
+=== attendance: absenteeism / lateness rates ===
+  pct Absent: 3.35%
+  pct Late: 17.59%
+  pct missed_punch_flag True: 2.41%
+
+=== per-employee weekly hours vs standard_weekly_hours (OT risk feasibility) ===
+  pct employee-weeks exceeding standard_weekly_hours: 53.1%
+
+=== punches: exception_flag vs manual_edit_flag overlap ===
+  exception AND manual_edit: 0
+  punches per employee per day (avg, should be ~2 IN/OUT): 1.25
+
+=== sales/traffic correlation with promo/event/holiday (sanity of synthetic generator) ===
+  avg sales_amount overall: 1734.55
+  avg sales_amount when promotion_flag=True: 1954.04
+  avg sales_amount when event_flag=True: 2066.70
+  avg sales_amount on holiday dates: 1708.06
+  avg sales_amount on non-holiday dates: 1734.77

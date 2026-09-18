@@ -1,0 +1,145 @@
+=== DATE RANGES ===
+  hourly_sales.business_date: min=2024-08-01 00:00:00 max=2026-07-31 00:00:00
+  customer_traffic.business_date: min=2024-08-01 00:00:00 max=2026-07-31 00:00:00
+  schedules.shift_date: min=2026-06-02 00:00:00 max=2026-07-31 00:00:00
+  punches.punch_timestamp: min=2026-06-02 07:50:00 max=2026-07-31 23:44:00
+  attendance.work_date: min=2026-06-02 00:00:00 max=2026-07-31 00:00:00
+  timecards.work_date: min=2026-06-02 00:00:00 max=2026-07-31 00:00:00
+  holidays.holiday_date: min=2024-01-01 00:00:00 max=2026-12-25 00:00:00
+  hourly_sales.hour_of_day: min=8 max=21
+  pay_rates.effective_date: min=2026-01-01 00:00:00 max=2026-01-01 00:00:00
+
+=== VALUE COUNTS ===
+employment_type:
+employment_type
+Full-Time    356
+Part-Time    144
+standard_weekly_hours:
+standard_weekly_hours
+40    356
+20     45
+28     36
+24     32
+30     31
+punch_type:
+punch_type
+OUT    19068
+IN     18382
+attendance_status:
+attendance_status
+Present    15409
+Late        3428
+Absent       653
+manual_edit_flag:
+manual_edit_flag
+False    36142
+True      1308
+exception_flag(punches):
+exception_flag
+False    37219
+True       231
+exception_flag(timecards):
+exception_flag
+False    18636
+True       854
+missed_punch_flag:
+missed_punch_flag
+False    19021
+True       469
+scheduled_hours(schedules):
+scheduled_hours
+8    19490
+labor_budgets.year:
+year
+2026    1200
+promotion_flag(sales):
+promotion_flag
+False    99834
+True      2366
+event_flag(sales):
+event_flag
+False    100814
+True       1386
+
+=== FK INTEGRITY CHECKS ===
+  employees.location_id -> locations: 0 invalid values
+  employees.department_id -> departments: 0 invalid values
+  employees.job_id -> jobs: 0 invalid values
+  locations.region_id -> regions: 0 invalid values
+  jobs.department_id -> departments: 0 invalid values
+  schedules.employee_id -> employees: 0 invalid values
+  schedules.location_id -> locations: 0 invalid values
+  schedules.department_id -> departments: 0 invalid values
+  punches.employee_id -> employees: 0 invalid values
+  punches.location_id -> locations: 0 invalid values
+  attendance.employee_id -> employees: 0 invalid values
+  attendance.schedule_id -> schedules: 0 invalid values
+  timecards.employee_id -> employees: 0 invalid values
+  pay_rates.employee_id -> employees: 0 invalid values
+  worker_skills.employee_id -> employees: 0 invalid values
+  labor_budgets.location_id -> locations: 0 invalid values
+  labor_budgets.department_id -> departments: 0 invalid values
+  hourly_sales.location_id -> locations: 0 invalid values
+  customer_traffic.location_id -> locations: 0 invalid values
+
+=== EMPLOYEE <-> SCHEDULE LOCATION/DEPT CONSISTENCY ===
+  schedules with location_id != employee's home location_id: 0 / 19490
+  schedules with department_id != employee's home department_id: 0 / 19490
+
+=== DUPLICATE CHECKS ===
+  duplicate schedule (employee_id, shift_date) rows: 0
+  duplicate attendance (employee_id, work_date) rows: 0
+  duplicate timecards (employee_id, work_date) rows: 0
+  duplicate hourly_sales (location_id, business_date, hour_of_day): 0
+  duplicate customer_traffic (location_id, business_date, hour_of_day): 0
+  duplicate labor_budgets (location_id, department_id, year, month): 0
+  duplicate pay_rates (employee_id, effective_date): 0
+
+=== SANITY: scheduled vs worked hours, negative checks ===
+  schedules.scheduled_end <= scheduled_start count: 0
+  timecards negative regular_hours: 0
+  timecards negative overtime_hours: 0
+  hourly_sales negative sales_amount: 0
+  customer_traffic negative customer_count: 0
+  pay_rates negative base_hourly_rate: 0
+  employees.base_hourly_rate vs pay_rates.base_hourly_rate mismatch count: 0
+
+=== SCHEDULES PER LOCATION/DEPT/DAY (staffing granularity) ===
+location_id
+LOC01    33.6
+LOC02    33.0
+LOC03    31.8
+LOC04    32.2
+LOC05    34.0
+LOC06    33.3
+LOC07    32.4
+LOC08    30.9
+LOC09    31.3
+LOC10    32.4
+
+=== EMPLOYEES PER LOCATION ===
+location_id
+LOC01    50
+LOC02    50
+LOC03    50
+LOC04    50
+LOC05    50
+LOC06    50
+LOC07    50
+LOC08    50
+LOC09    50
+LOC10    50
+
+=== WORKER_SKILLS proficiency levels / skill list ===
+skill_name
+Receiving           160
+POS                 157
+Supervision         155
+Customer Service    155
+Returns             154
+Food Safety         154
+Cash Handling       151
+Merchandising       140
+Inventory           138
+Fulfillment         136
+avg skills per employee: 3.0

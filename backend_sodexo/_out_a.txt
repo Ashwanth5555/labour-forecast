@@ -1,0 +1,80 @@
+=== INGESTION ===
+sources=160 loaded=839890 rejected=0
+  ERP        /mock/erp/locations                COMPLETED recv=     2 loaded=     2 rej=0
+  ERP        /mock/erp/departments              COMPLETED recv=     2 loaded=     2 rej=0
+  Workday    /mock/workday/jobs                 COMPLETED recv=     4 loaded=     4 rej=0
+  Workday    /mock/workday/job-skills           COMPLETED recv=    12 loaded=    12 rej=0
+  ERP        /mock/erp/staffing-standards       COMPLETED recv=     2 loaded=     2 rej=0
+  Workday    /mock/workday/workers              COMPLETED recv=   150 loaded=   150 rej=0
+
+=== LABOR ANALYTICS (daily) ===
+window: {'start': '2026-06-02', 'end': '2026-07-31'} grain: daily
+kpis: {"total_labor_cost": 711238.93, "total_budget": 960697.0, "labor_cost_vs_budget_pct": -26.0, "scheduled_hours": 45448.0, "actual_hours": 44312.4, "variance_hours": -1135.6, "overtime_hours": 1085.0, "overtime_cost": 25867.43, "overtime_budget": 76856.0, "attendance_rate_pct": 86.5, "labor_utilization_pct": 97.5}
+cost trend pts: 60 first: {'date': '2026-06-02', 'cost': 10929.35} last: {'date': '2026-07-31', 'cost': 10481.43}
+locations: ['Community Hospital A', 'Regional Medical Center A'] cost centres: ['CC01', 'CC02']
+sched-vs-actual first: {'date': '2026-06-02', 'scheduled': 712.0, 'actual': 686.01, 'variance': -25.99}
+overtime first: {'date': '2026-06-02', 'overtime_hours': 15.44, 'overtime_cost': 367.66}
+efficiency first: {'date': '2026-06-02', 'utilization_pct': 96.3, 'overtime_share_pct': 2.3, 'cost_per_hour': 15.93}
+attendance first: {'date': '2026-06-02', 'present_pct': 86.5, 'absent_pct': 5.6, 'late_pct': 7.9} breakdown: {'Present': 4914, 'Late': 500, 'Absent': 267}
+productivity: [{'location_id': 'LOC01', 'department_id': 'DEP01', 'signal': 'meals_served', 'total_flow': 17031.0, 'total_labor_hours': 6328.0, 'flow_per_labor_hour': 2.69}, {'location_id': 'LOC02', 'department_id': 'DEP01', 'signal': 'meals_served', 'total_flow': 49598.0, 'total_labor_hours': 18192.9, 'flow_per_labor_hour': 2.73}, {'location_id': 'LOC01', 'department_id': 'DEP02', 'signal': 'transaction_count', 'total_flow': 13019.0, 'total_labor_hours': 5233.6, 'flow_per_labor_hour': 2.49}, {'location_id': 'LOC02', 'department_id': 'DEP02', 'signal': 'transaction_count', 'total_flow': 37651.0, 'total_labor_hours': 14557.9, 'flow_per_labor_hour': 2.59}]
+shift_util: [{'location_id': 'LOC01', 'department_id': 'DEP01', 'avg_scheduled_hours': 8.0, 'avg_actual_hours': 7.84, 'utilization_pct': 98.0}, {'location_id': 'LOC01', 'department_id': 'DEP02', 'avg_scheduled_hours': 8.0, 'avg_actual_hours': 7.69, 'utilization_pct': 96.1}, {'location_id': 'LOC02', 'department_id': 'DEP01', 'avg_scheduled_hours': 8.0, 'avg_actual_hours': 7.77, 'utilization_pct': 97.1}, {'location_id': 'LOC02', 'department_id': 'DEP02', 'avg_scheduled_hours': 8.0, 'avg_actual_hours': 7.86, 'utilization_pct': 98.2}]
+near-OT employees: 131
+scales: {"overtime_control": {"good": 0.0, "poor": 15.0, "target": 5.0, "higher_is_better": false}, "punch_accuracy": {"good": 0.0, "poor": 10.0, "target": 2.0, "higher_is_better": false}, "schedule_adherence": {"good": 100.0, "poor": 75.0, "target": 90.0, "higher_is_better": true}, "budget_control": {"good": -5.0, "poor": 20.0, "target": 0.0, "higher_is_better": false}}
+  #1 Community Hospital A/Food & Nutrition Services score=74.4 comp={'overtime_control': 83.3, 'punch_accuracy': 64.0, 'schedule_adherence': 50.4, 'budget_control': 100.0} vals={'overtime_control': 2.5, 'punch_accuracy': 3.6, 'schedule_adherence': 87.6, 'budget_control': -21.9} staff=21 hrs=6328.0 cost=105076.98 worst=schedule_adherence
+  #2 Regional Medical Center A/Retail & Cafe Services score=73.4 comp={'overtime_control': 83.3, 'punch_accuracy': 61.0, 'schedule_adherence': 49.2, 'budget_control': 100.0} vals={'overtime_control': 2.5, 'punch_accuracy': 3.9, 'schedule_adherence': 87.3, 'budget_control': -25.0} staff=49 hrs=14557.9 cost=228134.26 worst=schedule_adherence
+  #3 Regional Medical Center A/Food & Nutrition Services score=72.8 comp={'overtime_control': 84.0, 'punch_accuracy': 63.0, 'schedule_adherence': 44.0, 'budget_control': 100.0} vals={'overtime_control': 2.4, 'punch_accuracy': 3.7, 'schedule_adherence': 86.0, 'budget_control': -28.6} staff=63 hrs=18192.9 cost=297549.78 worst=schedule_adherence
+  #4 Community Hospital A/Retail & Cafe Services score=67.5 comp={'overtime_control': 83.3, 'punch_accuracy': 48.0, 'schedule_adherence': 38.8, 'budget_control': 100.0} vals={'overtime_control': 2.5, 'punch_accuracy': 5.2, 'schedule_adherence': 84.7, 'budget_control': -23.4} staff=17 hrs=5233.6 cost=80477.91 worst=schedule_adherence
+
+=== LABOR ANALYTICS grain point counts ===
+  daily    cost= 60 eff= 60 att= 60
+  weekly   cost=  9 eff=  9 att=  9
+  monthly  cost=  2 eff=  2 att=  2
+
+=== TIME PUNCH ===
+window: {'start': '2026-06-02', 'end': '2026-08-01'}
+kpis: {"total_punches": 10689, "exception_rate_pct": 0.6, "missed_punches": 267, "duplicate_punches": 50, "early_clock_ins": 0, "late_clock_outs": 1382, "long_breaks": 64, "manual_edits": 363, "payroll_exceptions": 229, "excess_scheduled_hours_employees": 0, "suspicious_punch_patterns": 10}
+anomaly count: 2075
+by type: {"Missed Punch": 267, "Duplicate Punch": 50, "Late Clock-Out": 1382, "Long Break": 64, "Suspicious Punch Pattern \u2014 Review Required": 10, "Repeated Manual Edits": 73, "Potential Payroll Exception": 229}
+by severity: {"High": 560, "Medium": 1515}
+alerts:
+   High | 560 high-severity issue(s) need review
+   Medium | 'Late Clock-Out' is 67% of all flagged issues
+   Medium | Worker0037 has 27 flagged punches
+   Medium | Worker0018 has 26 flagged punches
+   Medium | Worker0107 has 25 flagged punches
+watchlist: 8
+   Worker0006 12 vs 7
+   Worker0018 12 vs 14
+   Worker0060 11 vs 13
+sample anomaly: {
+ "exception_type": "Missed Punch",
+ "severity": "High",
+ "problem": "Employee has no matching punch for a scheduled shift.",
+ "expected_value": "IN and OUT punch",
+ "actual_value": "Missing punch",
+ "variance": "N/A",
+ "rule_triggered": "attendance.missed_punch_flag",
+ "root_cause": "Employee forgot to badge in/out, or the device failed to record the event.",
+ "potential_impact": "Payroll and hours worked cannot be verified for this shift.",
+ "recommended_action": "Confirm hours with the employee/supervisor and manually correct the timecard."
+}
+  trend hourly  : 14 pts
+  trend daily   : 61 pts
+  trend monthly : 3 pts
+hourly trend sample: [{'label': '00:00', 'issues': 44, 'punches': 985, 'issue_rate_pct': 4.5}, {'label': '05:00', 'issues': 50, 'punches': 1272, 'issue_rate_pct': 3.9}, {'label': '06:00', 'issues': 35, 'punches': 860, 'issue_rate_pct': 4.1}]
+
+=== RECOMMENDATIONS ===
+total: 11
+by category: {"Staffing Adjustment": 4, "Overtime Reduction": 5, "Schedule Adherence": 2}
+  [High] Short of staff on Monday 20 Jul morning | Regional Medical Center / Food & Nutrition Services
+      problem: You need about 20 staff-hours that morning but only 10 are rostered - a shortfall of 10 hours.
+      action : Roster 10 more staff-hours. No other site has spare people then, so this needs extra cover.
+      impact : Covers the 10-hour gap so the shift is fully staffed. | savings=242.2 (what you would otherwise pay in last-minute overtime cover)
+  [High] Worker0090 is heading into overtime | Regional Medical Center A / Food & Nutrition Services
+      problem: Worker0090 has already worked 6.3 overtime hours, and their recent pattern makes more overtime very likely (98% chance).
+      action : Hand some of their upcoming shifts to a colleague with spare capacity.
+      impact : Avoids up to 6.3 hours paid at the overtime rate. | savings=44.22 (the extra premium above their normal hourly rate)
+  [High] Worker0100 is heading into overtime | Regional Medical Center A / Food & Nutrition Services
+      problem: Worker0100 has already worked 6.4 overtime hours, and their recent pattern makes more overtime very likely (97% chance).
+      action : Hand some of their upcoming shifts to a colleague with spare capacity.
+      impact : Avoids up to 6.4 hours paid at the overtime rate. | savings=51.29 (the extra premium above their normal hourly rate)

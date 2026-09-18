@@ -1,0 +1,102 @@
+=== TRAINING JOB ===
+id=JOB-4ea5d6d60b06 status=COMPLETED steps=52/52
+started=2026-08-20 08:58:13.477191 completed=2026-08-20 09:03:22.441937 duration=0:05:08.964746
+
+=== DEMAND DRIVERS ===
+target: required_manpower
+F&N inputs (11): ['is_holiday', 'demand_multiplier', 'season_Spring', 'season_Summer', 'season_Fall', 'season_Winter', 'occupied_beds', 'admissions_count', 'discharges_count', 'transfers_count', 'meals_served']
+Cafe inputs (10): ['is_holiday', 'demand_multiplier', 'season_Spring', 'season_Summer', 'season_Fall', 'season_Winter', 'promotion_flag', 'event_flag', 'sales_amount', 'transaction_count']
+not_in_dataset: ['Weather', 'Marketing campaign detail', 'Local event detail', 'Employee availability']
+
+=== DATA ANALYSIS (EDA) ===
+daily_trend pts=90 first={'date': '2026-05-03', 'actual': 2.62, 'trend_7d': 2.62} last={'date': '2026-07-31', 'actual': 2.58, 'trend_7d': 2.46}
+hour peak=7:00 (6.86) quietest=1:00 (2.0)
+by_day_of_week: {'0': 2.71, '1': 2.71, '2': 2.73, '3': 2.73, '4': 2.72, '5': 2.64, '6': 2.66}
+season_effect: {'Spring': 2.73, 'Summer': 2.49, 'Fall': 2.69, 'Winter': 2.9} holiday_lift_pct: -7.4
+cafe flag_effects: {"promotion_flag": {"on": 4.65, "off": 4.08, "lift_pct": 14.0}, "event_flag": {"on": 4.62, "off": 4.09, "lift_pct": 13.0}}
+
+=== DATA PRE-PROCESSING ===
+{'series_key': 'LOC01_FOOD_NUTRITION', 'total_history_days': 730, 'training_window_days': 182, 'training_window_rows': 364, 'resolved_seasonal_period_slots': 14, 'seasonal_period_label': 'Weekly', 'validation_plan': {'mode': 'rolling_origin', 'fold_validation_size_days': 22, 'fold_count': 3, 'note': 'Rolling-origin: 3 expanding-window folds over the tail of the series.'}, 'input_dataset': {'rows': 364, 'columns': 13}, 'forecast_horizon_days': 7, 'block_hours': 12}
+preview cols: ['date', 'is_holiday', 'demand_multiplier', 'season_Spring', 'season_Summer', 'season_Fall', 'season_Winter', 'occupied_beds', 'admissions_count', 'discharges_count', 'transfers_count', 'meals_served', 'required_manpower']
+row 1: {"date": "2026-01-31 00:00", "is_holiday": 0.0, "demand_multiplier": 1.0, "season_Spring": 0.0, "season_Summer": 0.0, "season_Fall": 0.0, "season_Winter": 1.0, "occupied_beds": 1248.2, "admissions_count": 4.0, "discharges_count": 4.0, "transfers_count": 1.0, "meals_served": 126.0, "required_manpower": 33.0}
+
+=== LEADERBOARD (all series) ===
+
+LOC01_FOOD_NUTRITION  (13/13 completed)  champion=XGBoost with exogenous variables
+   XGBoost with exogenous variables             acc= 94.25% mape=  5.75 mae= 3.43 rmse= 4.33 bias=   0.77   0.53s rows=337/84 *CHAMPION*
+   SARIMAX with exogenous variables             acc= 94.18% mape=  5.82 mae= 3.50 rmse= 4.35 bias=  -0.11   2.34s rows=337/84
+   VAR with exogenous variables                 acc= 94.18% mape=  5.82 mae= 3.50 rmse= 4.38 bias=  -0.33   0.04s rows=337/84
+   Auto ARIMA with exogenous variables          acc= 94.15% mape=  5.85 mae= 3.51 rmse= 4.42 bias=   0.07  10.48s rows=281/84
+   Exponential Smoothing Additive Damped        acc= 93.86% mape=  6.14 mae= 3.71 rmse= 4.56 bias=  -0.70   0.30s rows=337/84
+   Exponential Smoothing Multiplicative Damped  acc= 93.84% mape=  6.16 mae= 3.73 rmse= 4.57 bias=  -0.92   0.28s rows=337/84
+   Exponential Smoothing Additive               acc= 93.76% mape=  6.24 mae= 3.80 rmse= 4.64 bias=  -1.53   0.29s rows=337/84
+   Exponential Smoothing Multiplicative         acc= 93.76% mape=  6.24 mae= 3.80 rmse= 4.63 bias=  -1.54   0.26s rows=337/84
+   VAR                                          acc= 93.62% mape=  6.38 mae= 3.75 rmse= 4.74 bias=   2.62   0.01s rows=337/84
+   SARIMAX                                      acc= 93.51% mape=  6.49 mae= 3.83 rmse= 4.78 bias=   2.47   0.49s rows=337/84
+   XGBoost                                      acc= 92.70% mape=  7.30 mae= 4.26 rmse= 5.29 bias=   4.55   0.39s rows=337/84
+   LSTM                                         acc= 92.69% mape=  7.31 mae= 4.25 rmse= 5.41 bias=   4.47   9.51s rows=281/84
+   Auto ARIMA                                   acc= 91.81% mape=  8.19 mae= 4.75 rmse= 5.89 bias=   5.88   2.84s rows=281/84
+
+LOC02_FOOD_NUTRITION  (13/13 completed)  champion=VAR with exogenous variables
+   VAR with exogenous variables                 acc= 97.67% mape=  2.33 mae= 3.68 rmse= 4.72 bias=   1.05   0.05s rows=337/84 *CHAMPION*
+   Auto ARIMA                                   acc= 97.53% mape=  2.47 mae= 3.94 rmse= 4.95 bias=  -0.62  22.89s rows=281/84
+   XGBoost with exogenous variables             acc= 97.41% mape=  2.59 mae= 4.07 rmse= 4.98 bias=   1.23   0.69s rows=337/84
+   Auto ARIMA with exogenous variables          acc= 97.39% mape=  2.61 mae= 4.12 rmse= 5.10 bias=   1.73  34.80s rows=281/84
+   Exponential Smoothing Multiplicative Damped  acc= 97.36% mape=  2.64 mae= 4.20 rmse= 5.07 bias=  -0.84   0.34s rows=337/84
+   LSTM                                         acc= 97.36% mape=  2.64 mae= 4.13 rmse= 5.58 bias=   1.32  27.86s rows=281/84
+   SARIMAX                                      acc= 97.33% mape=  2.67 mae= 4.25 rmse= 5.23 bias=  -0.98   0.70s rows=337/84
+   Exponential Smoothing Additive Damped        acc= 97.33% mape=  2.67 mae= 4.25 rmse= 5.11 bias=  -0.91   0.41s rows=337/84
+   SARIMAX with exogenous variables             acc= 97.27% mape=  2.73 mae= 4.36 rmse= 5.32 bias=  -1.42   3.05s rows=337/84
+   Exponential Smoothing Multiplicative         acc= 97.16% mape=  2.84 mae= 4.53 rmse= 5.38 bias=  -1.41   0.35s rows=337/84
+   Exponential Smoothing Additive               acc= 97.13% mape=  2.87 mae= 4.58 rmse= 5.42 bias=  -1.49   0.43s rows=337/84
+   XGBoost                                      acc= 97.10% mape=  2.90 mae= 4.55 rmse= 5.59 bias=   2.05   0.49s rows=337/84
+   VAR                                          acc= 96.45% mape=  3.55 mae= 5.59 rmse= 6.78 bias=   2.82   0.01s rows=337/84
+
+LOC01_CAFE  (13/13 completed)  champion=XGBoost with exogenous variables
+   XGBoost with exogenous variables             acc= 92.11% mape=  7.89 mae= 4.56 rmse= 5.59 bias=  -0.21   0.64s rows=337/84 *CHAMPION*
+   Exponential Smoothing Additive Damped        acc= 92.11% mape=  7.89 mae= 4.67 rmse= 5.77 bias=  -1.97   0.45s rows=337/84
+   Exponential Smoothing Multiplicative Damped  acc= 92.11% mape=  7.89 mae= 4.67 rmse= 5.77 bias=  -2.00   0.36s rows=337/84
+   Exponential Smoothing Additive               acc= 92.10% mape=  7.90 mae= 4.64 rmse= 5.68 bias=  -1.17   0.40s rows=337/84
+   Exponential Smoothing Multiplicative         acc= 92.10% mape=  7.90 mae= 4.64 rmse= 5.68 bias=  -1.29   0.33s rows=337/84
+   Auto ARIMA                                   acc= 91.93% mape=  8.07 mae= 4.74 rmse= 5.84 bias=  -1.43  23.38s rows=281/84
+   SARIMAX                                      acc= 91.92% mape=  8.08 mae= 4.69 rmse= 5.83 bias=  -0.81   1.20s rows=337/84
+   LSTM                                         acc= 91.58% mape=  8.42 mae= 4.95 rmse= 6.34 bias=  -1.22  23.87s rows=281/84
+   VAR with exogenous variables                 acc= 91.30% mape=  8.70 mae= 4.90 rmse= 6.28 bias=  -0.01   0.04s rows=337/84
+   Auto ARIMA with exogenous variables          acc= 91.10% mape=  8.90 mae= 5.05 rmse= 6.36 bias=  -1.12  61.06s rows=281/84
+   XGBoost                                      acc= 90.88% mape=  9.12 mae= 5.34 rmse= 6.56 bias=   0.08   0.47s rows=337/84
+   VAR                                          acc= 90.77% mape=  9.23 mae= 5.37 rmse= 6.83 bias=  -1.90   0.01s rows=337/84
+   SARIMAX with exogenous variables             acc= 90.53% mape=  9.47 mae= 5.40 rmse= 6.45 bias=   3.18   3.38s rows=337/84
+
+LOC02_CAFE  (13/13 completed)  champion=XGBoost with exogenous variables
+   XGBoost with exogenous variables             acc= 96.63% mape=  3.37 mae= 5.44 rmse= 6.96 bias=  -0.80   0.73s rows=337/84 *CHAMPION*
+   Exponential Smoothing Multiplicative Damped  acc= 96.29% mape=  3.71 mae= 6.09 rmse= 7.89 bias=  -1.16   0.34s rows=337/84
+   Exponential Smoothing Additive               acc= 96.28% mape=  3.72 mae= 6.07 rmse= 7.81 bias=  -0.21   0.40s rows=337/84
+   Exponential Smoothing Additive Damped        acc= 96.28% mape=  3.72 mae= 6.10 rmse= 7.91 bias=  -0.89   0.44s rows=337/84
+   Exponential Smoothing Multiplicative         acc= 96.27% mape=  3.73 mae= 6.08 rmse= 7.80 bias=  -0.22   0.30s rows=337/84
+   SARIMAX                                      acc= 96.21% mape=  3.79 mae= 6.16 rmse= 7.90 bias=  -0.16   1.30s rows=337/84
+   LSTM                                         acc= 95.89% mape=  4.11 mae= 6.68 rmse= 9.19 bias=  -0.61  24.37s rows=281/84
+   SARIMAX with exogenous variables             acc= 95.66% mape=  4.34 mae= 7.08 rmse= 8.67 bias=  -0.56   2.99s rows=337/84
+   XGBoost                                      acc= 95.16% mape=  4.84 mae= 7.72 rmse= 9.85 bias=   0.64   0.49s rows=337/84
+   VAR with exogenous variables                 acc= 94.91% mape=  5.09 mae= 8.16 rmse=10.24 bias=  -0.35   0.05s rows=337/84
+   Auto ARIMA with exogenous variables          acc= 94.64% mape=  5.36 mae= 8.59 rmse=10.82 bias=  -0.79  19.33s rows=281/84
+   VAR                                          acc= 94.31% mape=  5.69 mae= 9.20 rmse=11.43 bias=  -1.43   0.01s rows=337/84
+   Auto ARIMA                                   acc= 93.30% mape=  6.70 mae=10.04 rmse=13.02 bias=   1.19  20.77s rows=281/84
+
+=== FORECAST EXPLORER (champion, LOC01_FOOD_NUTRITION) ===
+model=XGBoost with exogenous variables train_rows=337 test_rows=84 mode=rolling_origin folds=3
+backtest pts=84 future pts=7
+last actual=2026-07-31 00:00 -> forecast 2026-08-01 to 2026-08-07
+first 4 future: [('2026-08-01', 0, 56.4, 50.1, 61.0), ('2026-08-02', 0, 59.2, 52.9, 63.8), ('2026-08-03', 0, 60.9, 54.6, 65.5), ('2026-08-04', 0, 57.3, 51.0, 61.9)]
+
+=== DRIFT ===
+LOC01_FOOD_NUTRITION     status=Stable   signal=occupied_beds      r=0.34 (weak) recent=85.22 prior=85.2 chg=0.0% age=0d
+LOC02_FOOD_NUTRITION     status=Stable   signal=occupied_beds      r=0.61 (moderate) recent=249.09 prior=248.99 chg=0.0% age=0d
+LOC01_CAFE               status=Stable   signal=transaction_count  r=0.95 (strong) recent=15.59 prior=15.7 chg=-0.7% age=0d
+LOC02_CAFE               status=Stable   signal=transaction_count  r=0.99 (strong) recent=44.89 prior=44.33 chg=1.3% age=0d
+
+=== STAFFING IMPACT ===
+LOC01_FOOD_NUTRITION     pts=336 understaffed=103 overstaffed=160 balanced=73 window=2026-07-18..2026-07-31
+LOC02_FOOD_NUTRITION     pts=336 understaffed=97 overstaffed=232 balanced=7 window=2026-07-18..2026-07-31
+LOC01_CAFE               pts=196 understaffed=42 overstaffed=68 balanced=86 window=2026-07-18..2026-07-31
+LOC02_CAFE               pts=196 understaffed=25 overstaffed=135 balanced=36 window=2026-07-18..2026-07-31
+sample point: {"date": "2026-07-31T23:00:00", "required_headcount": 2, "scheduled_headcount": 6, "gap": 4, "status": "Overstaffed"}

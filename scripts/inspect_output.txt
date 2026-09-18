@@ -1,0 +1,451 @@
+SHEETS (16): ['README', 'regions', 'locations', 'departments', 'jobs', 'employees', 'hourly_sales', 'customer_traffic', 'schedules', 'punches', 'attendance', 'timecards', 'pay_rates', 'labor_budgets', 'worker_skills', 'holidays']
+
+====================================================================================================
+SHEET: README  shape=(7, 2)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - Labor Forecasting AI POC - Synthetic Dataset: str
+  - Unnamed: 1: str
+
+SAMPLE (first 5 rows):
+  Labor Forecasting AI POC - Synthetic Dataset                                                            Unnamed: 1
+0                                      Purpose                           Synthetic, non-production data for the POC.
+1                               Demand history                    2024-08-01 through 2026-07-31 (24 months, hourly).
+2                Workforce operational history     Most recent 60 days in this workbook to keep file size practical.
+3                                        Scale     500 employees, 10 locations, 3 regions, 10 departments, 15 roles.
+4                                    Important  No real UKG, Workday, payroll, employee, or client data is included.
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - Labor Forecasting AI POC - Synthetic Dataset: 7 unique / 7 rows
+  - Unnamed: 1: 7 unique / 7 rows
+
+====================================================================================================
+SHEET: regions  shape=(3, 2)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - region_id: str
+  - region_name: str
+
+SAMPLE (first 5 rows):
+  region_id region_name
+0     REG01       North
+1     REG02     Central
+2     REG03       South
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - region_id: 3 unique / 3 rows
+  - region_name: 3 unique / 3 rows
+
+====================================================================================================
+SHEET: locations  shape=(10, 3)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - location_id: str
+  - location_name: str
+  - region_id: str
+
+SAMPLE (first 5 rows):
+  location_id location_name region_id
+0       LOC01   Location 01     REG01
+1       LOC02   Location 02     REG02
+2       LOC03   Location 03     REG03
+3       LOC04   Location 04     REG01
+4       LOC05   Location 05     REG02
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - location_id: 10 unique / 10 rows
+  - location_name: 10 unique / 10 rows
+  - region_id: 3 unique / 10 rows
+
+====================================================================================================
+SHEET: departments  shape=(10, 3)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - department_id: str
+  - department_name: str
+  - cost_center_id: str
+
+SAMPLE (first 5 rows):
+  department_id   department_name cost_center_id
+0         DEP01         Front End           CC01
+1         DEP02  Customer Service           CC02
+2         DEP03             Sales           CC03
+3         DEP04         Inventory           CC04
+4         DEP05       Fulfillment           CC05
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - department_id: 10 unique / 10 rows
+  - department_name: 10 unique / 10 rows
+  - cost_center_id: 10 unique / 10 rows
+
+====================================================================================================
+SHEET: jobs  shape=(15, 3)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - job_id: str
+  - job_title: str
+  - department_id: str
+
+SAMPLE (first 5 rows):
+  job_id job_title department_id
+0  JOB01   Role 01         DEP01
+1  JOB02   Role 02         DEP02
+2  JOB03   Role 03         DEP03
+3  JOB04   Role 04         DEP04
+4  JOB05   Role 05         DEP05
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - job_id: 15 unique / 15 rows
+  - job_title: 15 unique / 15 rows
+  - department_id: 10 unique / 15 rows
+
+====================================================================================================
+SHEET: employees  shape=(500, 8)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - employee_id: str
+  - employee_name: str
+  - location_id: str
+  - department_id: str
+  - job_id: str
+  - employment_type: str
+  - standard_weekly_hours: int64
+  - base_hourly_rate: float64
+
+SAMPLE (first 5 rows):
+  employee_id employee_name location_id department_id job_id employment_type  standard_weekly_hours  base_hourly_rate
+0     EMP0001    Worker0001       LOC01         DEP01  JOB01       Full-Time                     40             15.43
+1     EMP0002    Worker0002       LOC02         DEP02  JOB02       Full-Time                     40             18.79
+2     EMP0003    Worker0003       LOC03         DEP03  JOB03       Part-Time                     20             25.04
+3     EMP0004    Worker0004       LOC04         DEP04  JOB04       Full-Time                     40             16.59
+4     EMP0005    Worker0005       LOC05         DEP05  JOB05       Full-Time                     40             25.23
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - employee_id: 500 unique / 500 rows
+  - employee_name: 500 unique / 500 rows
+  - location_id: 10 unique / 500 rows
+  - department_id: 10 unique / 500 rows
+  - job_id: 15 unique / 500 rows
+  - employment_type: 2 unique / 500 rows
+  - standard_weekly_hours: 5 unique / 500 rows
+  - base_hourly_rate: 429 unique / 500 rows
+
+====================================================================================================
+SHEET: hourly_sales  shape=(102200, 7)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - location_id: str
+  - business_date: datetime64[us]
+  - hour_of_day: int64
+  - sales_amount: float64
+  - transaction_count: int64
+  - promotion_flag: bool
+  - event_flag: bool
+
+SAMPLE (first 5 rows):
+  location_id business_date  hour_of_day  sales_amount  transaction_count  promotion_flag  event_flag
+0       LOC01    2024-08-01            8        720.58                 26           False       False
+1       LOC01    2024-08-01            9        625.64                 27           False       False
+2       LOC01    2024-08-01           10       1041.60                 34           False       False
+3       LOC01    2024-08-01           11       1301.08                 45           False       False
+4       LOC01    2024-08-01           12       1083.31                 51           False       False
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - location_id: 10 unique / 102200 rows
+  - business_date: 730 unique / 102200 rows
+  - hour_of_day: 14 unique / 102200 rows
+  - sales_amount: 78770 unique / 102200 rows
+  - transaction_count: 124 unique / 102200 rows
+  - promotion_flag: 2 unique / 102200 rows
+  - event_flag: 2 unique / 102200 rows
+
+====================================================================================================
+SHEET: customer_traffic  shape=(102200, 6)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - location_id: str
+  - business_date: datetime64[us]
+  - hour_of_day: int64
+  - customer_count: int64
+  - promotion_flag: bool
+  - event_flag: bool
+
+SAMPLE (first 5 rows):
+  location_id business_date  hour_of_day  customer_count  promotion_flag  event_flag
+0       LOC01    2024-08-01            8              42           False       False
+1       LOC01    2024-08-01            9              42           False       False
+2       LOC01    2024-08-01           10              51           False       False
+3       LOC01    2024-08-01           11              64           False       False
+4       LOC01    2024-08-01           12              74           False       False
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - location_id: 10 unique / 102200 rows
+  - business_date: 730 unique / 102200 rows
+  - hour_of_day: 14 unique / 102200 rows
+  - customer_count: 167 unique / 102200 rows
+  - promotion_flag: 2 unique / 102200 rows
+  - event_flag: 2 unique / 102200 rows
+
+====================================================================================================
+SHEET: schedules  shape=(19490, 8)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - schedule_id: str
+  - employee_id: str
+  - location_id: str
+  - department_id: str
+  - shift_date: datetime64[us]
+  - scheduled_start: datetime64[us]
+  - scheduled_end: datetime64[us]
+  - scheduled_hours: int64
+
+SAMPLE (first 5 rows):
+  schedule_id employee_id location_id department_id shift_date     scheduled_start       scheduled_end  scheduled_hours
+0  SCH0000001     EMP0001       LOC01         DEP01 2026-06-02 2026-06-02 09:00:00 2026-06-02 17:00:00                8
+1  SCH0000002     EMP0002       LOC02         DEP02 2026-06-02 2026-06-02 08:00:00 2026-06-02 16:00:00                8
+2  SCH0000003     EMP0004       LOC04         DEP04 2026-06-02 2026-06-02 08:00:00 2026-06-02 16:00:00                8
+3  SCH0000004     EMP0005       LOC05         DEP05 2026-06-02 2026-06-02 14:00:00 2026-06-02 22:00:00                8
+4  SCH0000005     EMP0006       LOC06         DEP06 2026-06-02 2026-06-02 08:00:00 2026-06-02 16:00:00                8
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - schedule_id: 19490 unique / 19490 rows
+  - employee_id: 500 unique / 19490 rows
+  - location_id: 10 unique / 19490 rows
+  - department_id: 10 unique / 19490 rows
+  - shift_date: 60 unique / 19490 rows
+  - scheduled_start: 300 unique / 19490 rows
+  - scheduled_end: 300 unique / 19490 rows
+  - scheduled_hours: 1 unique / 19490 rows
+
+====================================================================================================
+SHEET: punches  shape=(37450, 8)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - punch_id: str
+  - employee_id: str
+  - location_id: str
+  - punch_timestamp: datetime64[us]
+  - punch_type: str
+  - device_id: str
+  - manual_edit_flag: bool
+  - exception_flag: bool
+
+SAMPLE (first 5 rows):
+      punch_id employee_id location_id     punch_timestamp punch_type device_id  manual_edit_flag  exception_flag
+0  PCH00000001     EMP0001       LOC01 2026-06-02 09:01:00         IN     DEV01             False           False
+1  PCH00000002     EMP0001       LOC01 2026-06-02 18:13:00        OUT     DEV01             False           False
+2  PCH00000003     EMP0002       LOC02 2026-06-02 08:03:00         IN     DEV02             False           False
+3  PCH00000004     EMP0002       LOC02 2026-06-02 16:43:00        OUT     DEV02             False           False
+4  PCH00000005     EMP0004       LOC04 2026-06-02 16:00:00        OUT     DEV04             False           False
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - punch_id: 37450 unique / 37450 rows
+  - employee_id: 500 unique / 37450 rows
+  - location_id: 10 unique / 37450 rows
+  - punch_timestamp: 15867 unique / 37450 rows
+  - punch_type: 2 unique / 37450 rows
+  - device_id: 10 unique / 37450 rows
+  - manual_edit_flag: 2 unique / 37450 rows
+  - exception_flag: 2 unique / 37450 rows
+
+====================================================================================================
+SHEET: attendance  shape=(19490, 6)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - employee_id: str
+  - work_date: datetime64[us]
+  - schedule_id: str
+  - attendance_status: str
+  - late_minutes: int64
+  - missed_punch_flag: bool
+
+SAMPLE (first 5 rows):
+  employee_id  work_date schedule_id attendance_status  late_minutes  missed_punch_flag
+0     EMP0001 2026-06-02  SCH0000001           Present             9              False
+1     EMP0002 2026-06-02  SCH0000002           Present             9              False
+2     EMP0004 2026-06-02  SCH0000003           Present            10               True
+3     EMP0005 2026-06-02  SCH0000004           Present             0              False
+4     EMP0006 2026-06-02  SCH0000005           Present             4              False
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - employee_id: 500 unique / 19490 rows
+  - work_date: 60 unique / 19490 rows
+  - schedule_id: 19490 unique / 19490 rows
+  - attendance_status: 3 unique / 19490 rows
+  - late_minutes: 39 unique / 19490 rows
+  - missed_punch_flag: 2 unique / 19490 rows
+
+====================================================================================================
+SHEET: timecards  shape=(19490, 7)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - employee_id: str
+  - work_date: datetime64[us]
+  - scheduled_hours: int64
+  - regular_hours: float64
+  - overtime_hours: float64
+  - total_worked_hours: float64
+  - exception_flag: bool
+
+SAMPLE (first 5 rows):
+  employee_id  work_date  scheduled_hours  regular_hours  overtime_hours  total_worked_hours  exception_flag
+0     EMP0001 2026-06-02                8           8.00            1.08                9.08           False
+1     EMP0002 2026-06-02                8           8.00            0.58                8.58           False
+2     EMP0004 2026-06-02                8           7.83            0.00                7.83            True
+3     EMP0005 2026-06-02                8           8.00            0.59                8.59           False
+4     EMP0006 2026-06-02                8           8.00            0.88                8.88           False
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - employee_id: 500 unique / 19490 rows
+  - work_date: 60 unique / 19490 rows
+  - scheduled_hours: 1 unique / 19490 rows
+  - regular_hours: 52 unique / 19490 rows
+  - overtime_hours: 236 unique / 19490 rows
+  - total_worked_hours: 287 unique / 19490 rows
+  - exception_flag: 2 unique / 19490 rows
+
+====================================================================================================
+SHEET: pay_rates  shape=(500, 6)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - employee_id: str
+  - effective_date: datetime64[us]
+  - base_hourly_rate: float64
+  - overtime_multiplier: float64
+  - double_time_multiplier: int64
+  - currency: str
+
+SAMPLE (first 5 rows):
+  employee_id effective_date  base_hourly_rate  overtime_multiplier  double_time_multiplier currency
+0     EMP0001     2026-01-01             15.43                  1.5                       2      USD
+1     EMP0002     2026-01-01             18.79                  1.5                       2      USD
+2     EMP0003     2026-01-01             25.04                  1.5                       2      USD
+3     EMP0004     2026-01-01             16.59                  1.5                       2      USD
+4     EMP0005     2026-01-01             25.23                  1.5                       2      USD
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - employee_id: 500 unique / 500 rows
+  - effective_date: 1 unique / 500 rows
+  - base_hourly_rate: 429 unique / 500 rows
+  - overtime_multiplier: 1 unique / 500 rows
+  - double_time_multiplier: 1 unique / 500 rows
+  - currency: 1 unique / 500 rows
+
+====================================================================================================
+SHEET: labor_budgets  shape=(1200, 6)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - location_id: str
+  - department_id: str
+  - year: int64
+  - month: int64
+  - labor_budget: int64
+  - overtime_budget: int64
+
+SAMPLE (first 5 rows):
+  location_id department_id  year  month  labor_budget  overtime_budget
+0       LOC01         DEP01  2026      1         79031             8945
+1       LOC01         DEP02  2026      1         94660             3663
+2       LOC01         DEP03  2026      1         57599             7858
+3       LOC01         DEP04  2026      1         52694             8737
+4       LOC01         DEP05  2026      1         83110             7234
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - location_id: 10 unique / 1200 rows
+  - department_id: 10 unique / 1200 rows
+  - year: 1 unique / 1200 rows
+  - month: 12 unique / 1200 rows
+  - labor_budget: 1188 unique / 1200 rows
+  - overtime_budget: 1082 unique / 1200 rows
+
+====================================================================================================
+SHEET: worker_skills  shape=(1500, 4)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - employee_id: str
+  - skill_id: str
+  - skill_name: str
+  - proficiency_level: int64
+
+SAMPLE (first 5 rows):
+  employee_id skill_id   skill_name  proficiency_level
+0     EMP0001    SKL10      Returns                  2
+1     EMP0001    SKL08  Supervision                  3
+2     EMP0001    SKL03    Inventory                  2
+3     EMP0002    SKL10      Returns                  2
+4     EMP0002    SKL07  Fulfillment                  4
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - employee_id: 500 unique / 1500 rows
+  - skill_id: 10 unique / 1500 rows
+  - skill_name: 10 unique / 1500 rows
+  - proficiency_level: 4 unique / 1500 rows
+
+====================================================================================================
+SHEET: holidays  shape=(9, 3)
+----------------------------------------------------------------------------------------------------
+COLUMNS & DTYPES:
+  - holiday_date: datetime64[us]
+  - holiday_name: str
+  - demand_multiplier: float64
+
+SAMPLE (first 5 rows):
+  holiday_date holiday_name  demand_multiplier
+0   2024-01-01     New Year               1.35
+1   2024-07-04      Holiday               1.35
+2   2024-12-25    Christmas               1.35
+3   2025-01-01     New Year               1.35
+4   2025-07-04      Holiday               1.35
+
+NULL COUNTS:
+  none
+
+UNIQUE COUNTS (per column, capped display):
+  - holiday_date: 9 unique / 9 rows
+  - holiday_name: 3 unique / 9 rows
+  - demand_multiplier: 1 unique / 9 rows

@@ -1,0 +1,6 @@
+# The .env holds a live Square token once you fill it in. Keep it local.
+.env
+
+# Output written by square_fetch.py
+*.csv
+*.json
