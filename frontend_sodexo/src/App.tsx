@@ -47,7 +47,7 @@ export default function App() {
         <Route path="/" element={<Overview />} />
         <Route path="/labor-analytics" element={<LaborAnalytics />} />
         <Route path="/time-punch-analytics" element={<TimePunchAnalytics />} />
-        <Route path="/labor-forecasting" element={<Navigate to="/labor-forecasting/model-training" replace />} />
+        <Route path="/labor-forecasting" element={<Navigate to="/labor-forecasting/demand-drivers" replace />} />
         <Route path="/labor-forecasting/:section" element={<LaborForecasting />} />
         <Route path="/ai-recommendations" element={<AIRecommendations />} />
         <Route path="/ai-assistant" element={<AIAssistant />} />

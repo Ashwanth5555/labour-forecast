@@ -1,0 +1,26 @@
+# Secrets never enter the image - OPENAI_API_KEY and JWT_SECRET are injected
+# as Container App secrets at runtime.
+.env
+.env.*
+**/.env
+*.pem
+*.key
+epic_sandbox_test/
+square_sandbox_test/
+
+# Build/runtime cruft
+.git/
+.venv/
+**/__pycache__/
+*.pyc
+node_modules/
+frontend_sodexo/node_modules/
+frontend_sodexo/dist/
+ml/
+data/*.db
+data/*.db-journal
+backend_sodexo/_*
+scripts/
+docs/
+*.docx
+README.md

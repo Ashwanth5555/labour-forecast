@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { to: '/time-punch-analytics', label: 'Time Punch Analytics', icon: Clock },
 ]
 
-const LABOR_FORECASTING_SECTIONS = [
+export const LABOR_FORECASTING_SECTIONS = [
   { slug: 'demand-drivers', label: 'Demand Drivers & Feature Mapping' },
   { slug: 'data-analysis', label: 'Data Analysis' },
   { slug: 'data-preprocessing', label: 'Data Pre-processing' },
@@ -65,7 +65,7 @@ export function Sidebar() {
         ))}
 
         <button
-          onClick={() => navigate(isForecastingActive ? location.pathname : '/labor-forecasting/model-training')}
+          onClick={() => navigate(isForecastingActive ? location.pathname : '/labor-forecasting/demand-drivers')}
           className={`mb-1 flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors ${
             isForecastingActive ? 'bg-[var(--color-primary)] text-white' : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface-2)] hover:text-[var(--color-text)]'
           }`}
